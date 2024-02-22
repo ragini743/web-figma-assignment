@@ -2,7 +2,7 @@ import React from 'react'
 
 const Header = () => {
   return (
-    <div className='w-full h-[24px] border-[1px] border-gray-500 flex items-center justify-end'>
+    <div className='w-full h-[24px] md:h-auto border-[1px] border-gray-500 flex items-center justify-end  md:block'>
       <div className='flex justify-end items-center w-[100%] md:hidden'>
          <div className='mr-1'>
             <img src='./Rectangle.png'alt=''></img>
@@ -14,7 +14,18 @@ const Header = () => {
             <img src='./Path.png'alt=''></img>
          </div>
       </div>
-      <div className='md:visible'>
+      <div className='md:visible px-10 md:grid md:grid-cols-3 my-6'>
+        <div  className='flex items-center'>
+          <img src='./company-logo.png'alt=""></img>
+        </div>
+        <div className='flex items-center bg-slate-100 rounded-xl px-4 py-2'>
+        <img src='./searchIcon.png'alt="" className='mr-4'></img>
+        search for your favrite groups in ATG
+        </div>
+        <div className='flex items-center justify-end'>
+          create Accounts <span className='text-blue-600 ml-2'> it's free !</span>
+          <img src='./baseline-arrow.png'alt=''></img>
+        </div>
          
       </div>
     </div>
