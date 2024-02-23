@@ -64,18 +64,18 @@ export const ItemCard=({data}) =>{
         <div>
             {
                 (data.imageSrc)? <div className="mb-4 ">
-                <img src={data.imageSrc}alt=''></img>
+                <img src={data.imageSrc}alt='' className="w-[100%]"></img>
             </div>:null
 
             }
        
-        <div className=" text-slate-600 text-xs pl-4 pb-4">
+        <div className=" text-slate-600 text-xs pl-4 pb-4 pr-4 md:text-[1rem]">
         <div className='flex'>
             <img src={data.icon} alt=''></img>
-           <p className="pl-2">{data.heading}</p>
+           <p className="pl-2 ">{data.heading}</p>
         </div>
         <div className='flex items-start mt-2'>
-            <p className="font-bold text-black text-sm">{data.text}</p>
+            <p className="font-bold text-black text-sm md:text-lg">{data.text}</p>
             <img src='./Group 3.png' alt=''></img>
             
         </div>
@@ -83,16 +83,17 @@ export const ItemCard=({data}) =>{
             {data.experience?data.experience:<div className="flex pt-2  items-center w-[100%] text-[10px]">
                 <div className=" flex">
                 <img src={data.optionalImage}alt=""></img>
-                <p>{data.date||data.jobType}</p>
+                <p className="md:text-[1rem]">{data.date||data.jobType}</p>
                 </div>
-               <div className="flex ml-10">
+               <div className="flex ml-10 md:text-[1rem]">
                 <img src="./mapIcon.png"alt=""></img>
                 {data.location}
                </div>
                 
                 </div>}
         </div>
-        {(data.link?<div className={ "my-2 py-1 border-gray-400 border-[1px] rounded-lg text-center w-[50%] mx-auto"}><a href="/">{data.link}</a></div>:null)}
+        {(data.link?<div className={ "my-2 py-1 border-gray-400 border-[1px] rounded-lg text-center w-[50%] mx-auto md:py-2 "}>
+            <a href="/" className="md:text-[1rem] md:font-bold hover:text-blue-700 ">{data.link}</a></div>:null)}
         <div className="flex justify-between">
             <div className="flex items-center">
             <img src={data.personLogo} alt=""></img>
