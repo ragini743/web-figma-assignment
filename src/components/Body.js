@@ -4,16 +4,19 @@ import Form from './Form'
 const Body = () => {
     const [dataList ,setDataList] = useState(data)
     const [signIn ,setSignIn] = useState(false)
+    const [logedInUser,setLogedInUser] =useState(false)
+    const [email,setEmail] = useState("")
     const handleSIgnInForm = () =>{
         setSignIn(!signIn)
         
     }
+
    
-    
-console.log(signIn)
+    console.log("Loged",logedInUser)
+// console.log(signIn)
   return (
     <div className='relative'>
-        <div className='h-[px> w-[100%] relative'>
+        <div className={' w-[100%] relative '+(logedInUser?"hidden":"block") }>
             <img src ="./Rectangle 2.png"alt=''className='w-[100%]'></img>
            
             <img src ="./Rectangle 3.png"alt='' className='absolute top-0 bg-transparent left-0 right-0 w-full'></img>
@@ -22,7 +25,7 @@ console.log(signIn)
             <p className='font-thin'>142,765 computer Engineers follow this</p>
             </div>
            
-            <div className='absolute top-0 right-4 left-2.5 mt-[16px] flex items-center justify-between'>
+            <div className='absolute top-0 right-4 left-2.5 mt-[16px] flex items-center justify-between md:hidden'>
                <div className=''><img src='./arrow.png'alt=''></img></div>
                <button type='button ' className=' text-white text-xs border-[2px]    border-white rounded-lg w-[76px] h-[28px] ' onClick={handleSIgnInForm}>{signIn?"Leave Group":"Join Group"}
                </button>
@@ -31,6 +34,7 @@ console.log(signIn)
       
 
         </div>
+        
         <div className='flex justify-between px-4'>
             <div className='md:hidden'>
                 Posts(368)
@@ -39,8 +43,8 @@ console.log(signIn)
                 <button>Filter: All</button>
                 <img src='./baseline-arrow.png'alt=''></img>
             </div>
-            <div className='w-[80%] hidden md:flex justify-between border-gray-300 border-b-[1px] mx-auto pb-3 mb-6  items-center'>
-                <ul className='flex justify-evenly w-[30%]'>
+            <div className='w-[80%] hidden md:flex justify-between border-gray-300 border-b-[1px] mx-auto pb-3 mb-6  items-center text-sm '>
+                <ul className='flex justify-evenly w-[50%] md:w-[40%]'>
                     <li className=''> 
                       <a href='#all'>All Posts(32)
                       </a>
@@ -62,14 +66,16 @@ console.log(signIn)
                          </a>
                     </li>
                 </ul>
-                <div className='flex w-[30%] justify-evenly'>
+                <div className='flex w-[50%] justify-evenly md:w-[40%]'>
                   <div className='flex  rounded-md bg-gray-100 py-2 px-2'>
                     <div className='mr-2'>Write a Post</div>
                     <img src='./baseline-arrow.png'alt=''></img>
                   </div>
                   <div className='flex bg-blue-600 text-white  rounded-md py-2 px-2'>
                   <img src='./Vector (9).png'alt='' className='object-contain'></img>
-                    <div className='ml-2'>Join Group</div>
+                    <div className='ml-2'>
+                    <button type='button ' className='' onClick={handleSIgnInForm}>{signIn?"Leave Group":"Join Group"}
+               </button></div>
                    
                   </div>
                 </div>
@@ -77,7 +83,11 @@ console.log(signIn)
             </div>
         </div>
         {
-            signIn?<Form signIn={signIn} setSignIn={setSignIn}  /> :null
+            signIn?<div>
+                <img src ="./Rectangle 3.png"alt='' className='absolute top-0 bg-transparent left-0 right-0 w-full bottom-0 h-[100%] '></img>
+            <Form signIn={signIn} email={email} setEmail={setEmail}  setSignIn={setSignIn} setLogedInUser={setLogedInUser} logedInUser={logedInUser} />
+            </div> :null
+
          }
 
          <div className='md:w-[80%] mx-auto md:flex md:flex-row'>

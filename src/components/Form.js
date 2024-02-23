@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const Form = ({signIn,setSignIn}) => {
+const Form = ({signIn,setSignIn,email,setEmail,setLogedInUser,logedInUser}) => {
     const [createAccount ,setCreateAccount] = useState(true)
     const onClose = () =>{
         setSignIn(false)
@@ -8,14 +8,25 @@ const Form = ({signIn,setSignIn}) => {
     const handleSIgnUp = ()=>{
         setCreateAccount(!createAccount)
     }
+   
+   console.log("lo",logedInUser)
+    
+    
   return (
-    <div className='top-[170px] sm:top-[300px] bottom-0 bg-white absolute px-4 rounded-md w-[100%] '>
+    <div className='top-[160px] sm:top-[300px] bottom-0 bg-white absolute px-4 rounded-md w-[100%] sm:w-[80%] md:w-[60%] lg:w-[40%] mx-auto  left-0 right-0 h-[500px] md:bottom-[70px]'>
+        <div className='hidden md:block text-sm text-green-600 pt-4'>Let's learn & inspire each other with our passion for computer engineering.SIgn up now .
+    
+        </div>
+        <div className='flex'>
+        <div>
+        
         <div className='flex justify-between py-6 '>
         <div>
             {createAccount?"Create Account":"Welcome Back !"}
         </div>
-        <div onClick={onClose}>
-            <img src='./cancelIcon.png'alt=''></img>
+        <div onClick={onClose} className='md:absolute md:right-0 md:-top-[25px]'>
+            <img src={'./cancelIcon.png'} alt=''className='md:hidden'></img>
+            <img src ="./whiteCancelIcon.png" alt=''className='hidden md:inline-block'></img>
         </div>
         </div>
        
@@ -30,7 +41,7 @@ const Form = ({signIn,setSignIn}) => {
             </div>):null}
             
            
-            <input type='Email' placeholder='Email' className='border-gray-400  border-b-[1px] w-[100%] bg-gray-200 outline-none pl-4 py-2'></input>
+            <input type='Email' placeholder='Email' className='border-gray-400  border-b-[1px] w-[100%] bg-gray-200 outline-none pl-4 py-2'onChange={(e)=>(e.target.value)}></input>
             <div className='border-gray-400  border-b-[1px] flex justify-between w-[100%] bg-gray-200  pl-4 py-2'>
                <input type='password'placeholder='Password'className='bg-gray-200 outline-none ' ></input>
                <img src='./visibility.png'alt=''className='rotate-90 mr-4'></img>
@@ -41,12 +52,18 @@ const Form = ({signIn,setSignIn}) => {
            
         </form>
         <div className='flex justify-between mb-6'>
-        <div className='bg-blue-600 rounded-xl' onClick={onClose}>
+        <div className='bg-blue-600 rounded-xl' onClick={()=>(
+            onClose(),
+        setEmail(email),
+        alert("created a account"),
+        setEmail(""),
+        setLogedInUser(true)
+     )}>
         <button className='px-4 py-1 rounded-xl text-white'>
             {createAccount?"create Account":"Sign In"} 
         </button>
         </div>
-        <div className='underline'onClick={handleSIgnUp}>
+        <div className='underline md:hidden'onClick={handleSIgnUp} >
             or,{createAccount?"Sign In":"Create Account"} 
         </div>
         </div>
@@ -58,11 +75,20 @@ const Form = ({signIn,setSignIn}) => {
             <img src='./google-logo'alt='' className='mr-4'></img>
             Sign {createAccount?"up":"in"} with Google
         </div>
-        <footer className='text-center mt-8'>
-            {createAccount?"By signinng up ,you agree to our Terms & conditions ,Privacy policy":"Forgot Password ?"}
+      
+        </div>
+       <div className='hidden md:block text-xs py-6 '>
+        {createAccount?"Already have an account?":"Don't have an account yet ?"} <span className='text-blue hover:text-blue-700'
+        onClick={handleSIgnUp} >
+           or, {createAccount?"Sign In":"Create new for free!"} </span>
+        <img src="./medium.png"alt='' className='mt-10 object-contain'></img>
+       </div>
+       </div>
+       <footer className={'text-center mt-8 md: text-xs md:flex  md:mt-0 '+ (createAccount?"md:justify-end":"md:justify-start")}>
+        <p className='w-[30%]'> {createAccount?"By signing up ,you agree to our Terms & conditions ,Privacy policy":"Forgot Password ?"}</p>
+           
           
         </footer>
-       
 
     </div>
   )
